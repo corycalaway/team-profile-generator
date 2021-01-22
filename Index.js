@@ -1,8 +1,33 @@
 const { isInterfaceDeclaration } = require('@babel/types');
 const inquirer = require('inquirer')
 
+
+// engineer questions
+const questionsEngineer = (engineerData) => {
+
+console.log(engineerData)
+
+if (!engineerData.info) {
+    engineerData.info = [];
+  }
+    return inquirer.prompt([
+
+        {
+            type: 'input',
+            name: 'employeeName',
+            message: 'Enter team manager name.'
+        },
+    ]).then(engineerInfo => {
+        engineerData.info.push(engineerInfo)
+        return choicesPrompt(engineerData)
+    });
+}
+
+// WHEN I select the engineer option
+// THEN I am prompted to enter the engineers name, ID, email, and GitHub username, and I am taken back to the menu
+
 // choices prompt
-const choicesPrompt = () => {
+const choicesPrompt = (engineerData) => {
     return inquirer.prompt([
     // checks to see what selections was 
     {
@@ -15,7 +40,8 @@ const choicesPrompt = () => {
     ]).then(choiceAnswer => {
         // checks to see what selections was 
     if (choiceAnswer.employeeChoice === 'Engineer') {
-        console.log('Engineer')
+        
+        questionsEngineer(engineerData);
     } else if (choiceAnswer.employeeChoice === 'Intern') {
         console.log('Intern')
     } else {
@@ -26,6 +52,7 @@ const choicesPrompt = () => {
 
 // manager questions
 const questionsManager = () => {
+    
     return inquirer.prompt([
 
         {
@@ -73,7 +100,11 @@ const questionsManager = () => {
 
 const init = () => {
 questionsManager()
+// .then(variableCreate)
 .then(choicesPrompt)
+// .then(variableCreate)
+// .then(choicesPrompt(engineerData))
+
 
 }
 
@@ -83,8 +114,7 @@ init()
 // THEN I am prompted to enter the team managers name, employee ID, email address, and office number
 // WHEN I enter the team managers name, employee ID, email address, and office number
 // THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
-// WHEN I select the engineer option
-// THEN I am prompted to enter the engineers name, ID, email, and GitHub username, and I am taken back to the menu
+
 // WHEN I select the intern option
 // THEN I am prompted to enter the interns name, ID, email, and school, and I am taken back to the menu
 // WHEN I decide to finish building my team
