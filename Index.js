@@ -1,6 +1,26 @@
 const { isInterfaceDeclaration } = require('@babel/types');
 const inquirer = require('inquirer')
 
+// intern questions
+// const questionsIntern = (internData) => {
+
+//     console.log(internData)
+    
+//     if (!internData.info) {
+//         internData.info = [];
+//       }
+//         return inquirer.prompt([
+    
+//             {
+//                 type: 'input',
+//                 name: 'employeeName',
+//                 message: 'Enter team manager name.'
+//             },
+//         ]).then(internInfo => {
+//             internData.info.push(internInfo)
+//             return choicesPrompt(internData)
+//         });
+// }
 
 // engineer questions
 const questionsEngineer = (engineerData) => {
@@ -23,11 +43,33 @@ if (!engineerData.info) {
     });
 }
 
+const questionsIntern = (internData) => {
+
+    console.log(internData)
+    
+    if (!internData.info) {
+        internData.info = [];
+      }
+        return inquirer.prompt([
+    
+            {
+                type: 'input',
+                name: 'employeeName',
+                message: 'Enter team manager name.'
+            },
+        ]).then(engineerInfo => {
+            internData.info.push(engineerInfo)
+            return choicesPrompt(internData)
+        });
+    }
+
+
 // WHEN I select the engineer option
 // THEN I am prompted to enter the engineers name, ID, email, and GitHub username, and I am taken back to the menu
 
 // choices prompt
-const choicesPrompt = (engineerData) => {
+const choicesPrompt = (engineerData, internData) => {
+    
     return inquirer.prompt([
     // checks to see what selections was 
     {
@@ -42,8 +84,11 @@ const choicesPrompt = (engineerData) => {
     if (choiceAnswer.employeeChoice === 'Engineer') {
         
         questionsEngineer(engineerData);
+        console.log(engineerData)
     } else if (choiceAnswer.employeeChoice === 'Intern') {
-        console.log('Intern')
+        
+        questionsIntern(internData);
+        console.log(internData)
     } else {
         console.log('Complete')
     }
