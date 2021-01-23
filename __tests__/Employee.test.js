@@ -7,9 +7,5 @@ test('creates and employee object', () => {
     expect(employee.employeeName).toBe('Cory');
     expect(employee.id).toEqual(expect.any(Number));
     expect(employee.email).toEqual(expect.stringContaining('@'))
-    //how to check if email in jest
- //   expect(employee.email).toEqual(expect.any(Number));
-    
-    
 });
 
