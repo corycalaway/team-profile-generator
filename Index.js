@@ -35,7 +35,22 @@ if (!employeeData.engineer) {
         {
             type: 'input',
             name: 'employeeName',
-            message: 'Enter team manager name.'
+            message: 'Enter team engineer name.'
+        },
+        {
+            type: 'input',
+            name: 'employeeId',
+            message: 'Enter team engineer Id.'
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'Enter team engineer email.'
+        },
+        {
+            type: 'input',
+            name: 'employeeGithub',
+            message: 'Enter team engineer Github username.'
         },
     ]).then(engineerInfo => {
         employeeData.engineer.push(engineerInfo)
@@ -55,7 +70,22 @@ const questionsIntern = (employeeData) => {
             {
                 type: 'input',
                 name: 'employeeName',
-                message: 'Enter team manager name.'
+                message: 'Enter team intern name.'
+            },
+            {
+                type: 'input',
+                name: 'employeeId',
+                message: 'Enter team intern Id.'
+            },
+            {
+                type: 'input',
+                name: 'employeeEmail',
+                message: 'Enter team Intern email.'
+            },
+            {
+                type: 'input',
+                name: 'employeeSchool',
+                message: 'Enter team Intern school.'
             },
         ]).then(internInfo => {
             employeeData.intern.push(internInfo)
@@ -63,7 +93,8 @@ const questionsIntern = (employeeData) => {
         });
     }
 
-
+// WHEN I select the intern option
+// THEN I am prompted to enter the interns name, ID, email, and school, and I am taken back to the menu
 // WHEN I select the engineer option
 // THEN I am prompted to enter the engineers name, ID, email, and GitHub username, and I am taken back to the menu
 
