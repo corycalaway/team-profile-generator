@@ -23,12 +23,12 @@ const inquirer = require('inquirer')
 // }
 
 // engineer questions
-const questionsEngineer = (engineerData) => {
+const questionsEngineer = (employeeData) => {
 
-console.log(engineerData)
+console.log(employeeData)
 
-if (!engineerData.info) {
-    engineerData.info = [];
+if (!employeeData.engineer) {
+    employeeData.engineer = [];
   }
     return inquirer.prompt([
 
@@ -38,17 +38,17 @@ if (!engineerData.info) {
             message: 'Enter team manager name.'
         },
     ]).then(engineerInfo => {
-        engineerData.info.push(engineerInfo)
-        return choicesPrompt(engineerData)
+        employeeData.engineer.push(engineerInfo)
+        return choicesPrompt(employeeData)
     });
 }
 
-const questionsIntern = (internData) => {
+const questionsIntern = (employeeData) => {
 
-    console.log(internData)
+    console.log(employeeData.intern)
     
-    if (!internData.info) {
-        internData.info = [];
+    if (!employeeData.intern) {
+        employeeData.intern = [];
       }
         return inquirer.prompt([
     
@@ -57,9 +57,9 @@ const questionsIntern = (internData) => {
                 name: 'employeeName',
                 message: 'Enter team manager name.'
             },
-        ]).then(engineerInfo => {
-            internData.info.push(engineerInfo)
-            return choicesPrompt(internData)
+        ]).then(internInfo => {
+            employeeData.intern.push(internInfo)
+            return choicesPrompt(employeeData)
         });
     }
 
@@ -68,7 +68,7 @@ const questionsIntern = (internData) => {
 // THEN I am prompted to enter the engineers name, ID, email, and GitHub username, and I am taken back to the menu
 
 // choices prompt
-const choicesPrompt = (engineerData, internData) => {
+const choicesPrompt = (employeeData) => {
     
     return inquirer.prompt([
     // checks to see what selections was 
@@ -83,12 +83,12 @@ const choicesPrompt = (engineerData, internData) => {
         // checks to see what selections was 
     if (choiceAnswer.employeeChoice === 'Engineer') {
         
-        questionsEngineer(engineerData);
-        console.log(engineerData)
+        questionsEngineer(employeeData);
+        console.log(employeeData)
     } else if (choiceAnswer.employeeChoice === 'Intern') {
         
-        questionsIntern(internData);
-        console.log(internData)
+        questionsIntern(employeeData);
+        console.log(employeeData)
     } else {
         console.log('Complete')
     }
@@ -147,6 +147,12 @@ const init = () => {
 questionsManager()
 // .then(variableCreate)
 .then(choicesPrompt)
+.then(internData => {
+    console.log(internData)
+})
+.then(engineerData => {
+    console.log(engineerData)
+})
 // .then(variableCreate)
 // .then(choicesPrompt(engineerData))
 
