@@ -1,12 +1,8 @@
-const questionsManager = require('./lib/EmployeeLaunch');
-// const inquirer = require('inquirer');
-const managerInfo = require('./lib/Manager')
-// const internInfo = require('./Intern')
-// const engineerInfo = require('./Engineer')
-const employeeInfo = require('./lib/Employee')
-const managerInfoData = require('./lib/Manager')
 
-new questionsManager().questionsManagerData()
+const employeeInfo = require('./lib/Employee')
+
+
+new employeeInfo().questionsManagerData()
 // .then( managerComplete => {
 //     return new managerInfo(managerComplete)
 
