@@ -1,14 +1,14 @@
 const { test, expect } = require('@jest/globals')
-const questionsManager = require('../lib/Employee')
-const Manager = require('../lib/Manager')
+
+const Employee = require('../lib/Employee.js')
 
 test('creates and employee object', () => {
-    const employee = new Manager('Cory', 1234, '1234@gmail', 12);
+    const employee = new Employee('Cory', 1234, '1234@gmail');
 
-    expect(employee.managerName).toBe('Cory');
-    expect(employee.managerId).toEqual(expect.any(Number));
-    expect(employee.managerEmail).toEqual(expect.stringContaining('@'))
-    expect(employee.officeNumber).toBeGreaterThanOrEqual(1);
+    expect(employee.employeeName).toBe('Cory');
+    expect(employee.employeeId).toEqual(expect.any(Number));
+    expect(employee.employeeEmail).toEqual(expect.stringContaining('@'))
+
 
     // this.employeeName;
     // this.employeeId;
