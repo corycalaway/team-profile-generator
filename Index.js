@@ -6,13 +6,14 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 
 class Aplication {
-  constructor(managerData) {
-    this.manager;
-    this.managerData = [];
+  constructor(roleAssign) {
+    this.employeeInfo;
+    this.employeeData = [];
+    this.roleAssign = '';
   }
 
   startApp() {
-    this.manager = new Employee();
+
 
     inquirer
       .prompt({
@@ -21,12 +22,15 @@ class Aplication {
         message: "Please enter Managers name",
       })
       .then(({ employeeName }) => {
-        this.manager = new Employee(employeeName);
-        console.log(employeeName)
 
-        this.managerData.push(employeeName)
-        console.log(this.managerData)
-        this.employeeIdQuestion
+        // creates a manager
+        this.employeeInfo = new Manager(employeeName);
+        
+        // pushes name to manager array
+        this.employeeData.push(employeeName)
+        console.log(this.employeeData)
+        // this.roleAssign = 'Manager'
+        this.employeeRoleQuestion()
       });
   }
 
@@ -42,8 +46,80 @@ class Aplication {
   employeeNameQuestion() {}
 
   employeeIdQuestion() {
-    
-    this.managerId = new Employee().getEmployeeId();
+    console.log(this.employeeInfo)
+
+    // uses employee to call getemployeeid function
+    this.employeeInfo.getEmployeeId()
+    // this.managerId = new Employee().getEmployeeId();
+    .then(({ employeeId }) => {
+
+        // creates a manager
+        
+        // pushes name to manager array
+        this.employeeData.push(employeeId)
+        console.log(this.employeeData)
+
+     
+      });
+  }
+
+  employeeRoleQuestion() {
+    console.log(this.employeeInfo)
+
+    // if role is assigned 'Manager'
+    if (this.roleAssign === 'Manager') {
+        this.employeeInfo.getEmployeeId()
+
+    } else {
+        
+        inquirer
+            .prompt({
+                type: 'list',
+                name: 'employeeChoice',
+                message: 'Would you like to add any employees to team.',
+                choices: ['Engineer', 'Intern', 'Complete']
+            }).then(answer => {
+
+                console.log(answer)
+                if(answer.employeeChoice === 'Engineer') {
+                    console.log('ENGINEER')
+                    
+                } else if (answer.employeeChoice === 'Intern') {
+                    console.log('INTERN')
+                } else {
+                    console.log('Complete')
+                }
+                // creates a manager
+                
+                // pushes name to manager array
+                // this.employeeData.push(employeeId)
+                // console.log(this.employeeData)
+        
+             
+              });
+
+
+
+    //     if (this.roleAssign === 'Engineer') {
+
+    // } else if (this.roleAssign === 'Intern') {
+
+    // } else {
+
+    }
+    // uses employee to call getemployeeid function
+    // this.employeeInfo.getEmployeeRole()
+    // // this.managerId = new Employee().getEmployeeId();
+    // .then(({ employeeId }) => {
+
+    //     // creates a manager
+        
+    //     // pushes name to manager array
+    //     this.employeeData.push(employeeId)
+    //     console.log(this.employeeData)
+
+     
+    //   });
   }
 }
 
