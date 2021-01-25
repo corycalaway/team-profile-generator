@@ -34,24 +34,7 @@ class Aplication {
       });
   }
 
-  employeeEmailFunction() {
-    // gets email of employee
-      this.employeeInfo.getEmployeeEmail()
-
-      .then(({ employeeEmail }) => {
-       
-        this.employeeData.push(employeeEmail)
-      console.log(this.employeeData)
-
-      
-    // this.managerName.push(new Employee().getEmployeeName())
-    // // .then(
-    // .then(() => {
-    //     // this.managerData.push(managerName)
-    // console.log(this.managerName)
-    // this.employeeIdQuestion()
-      })
-  }
+ 
 
   employeeNameQuestion() {}
 
@@ -75,6 +58,31 @@ class Aplication {
     
      
     })
+  }
+
+  employeeEmailFunction() {
+    // gets email of employee
+      this.employeeInfo.getEmployeeEmail()
+
+      .then(({ employeeEmail }) => {
+       
+        this.employeeData.push(employeeEmail)
+      console.log(this.employeeData)
+
+      console.log(this.roleAssign)
+
+      // call for individual items based on role. 
+      if(this.roleAssign === 'Manager') {
+        
+        this.managerQuestion();
+
+      } else if (this.roleAssign === 'Engineer') {
+
+      } else if (this.roleAssign === 'Intern') {
+
+      }
+
+      })
   }
 
   employeeRoleQuestion() {
@@ -140,6 +148,13 @@ class Aplication {
 
      
     //   });
+  }
+
+  managerQuestion() {
+
+    this.employeeInfo.getOfficeNumber()
+
+    
   }
 }
 
