@@ -29,22 +29,33 @@ class Aplication {
         // pushes name to manager array
         this.employeeData.push(employeeName)
         console.log(this.employeeData)
-        // this.roleAssign = 'Manager'
+        this.roleAssign = 'Manager'
         this.employeeRoleQuestion()
       });
   }
 
-  getEmployeeName() {
+  employeeEmailFunction() {
+    // gets email of employee
+      this.employeeInfo.getEmployeeEmail()
+
+      .then(({ employeeEmail }) => {
+       
+        this.employeeData.push(employeeEmail)
+      console.log(this.employeeData)
+
+      
     // this.managerName.push(new Employee().getEmployeeName())
     // // .then(
     // .then(() => {
     //     // this.managerData.push(managerName)
     // console.log(this.managerName)
     // this.employeeIdQuestion()
+      })
   }
 
   employeeNameQuestion() {}
 
+  // get employees id
   employeeIdQuestion() {
     console.log(this.employeeInfo)
 
@@ -52,15 +63,18 @@ class Aplication {
     this.employeeInfo.getEmployeeId()
     // this.managerId = new Employee().getEmployeeId();
     .then(({ employeeId }) => {
-
+        console.log(employeeId)
         // creates a manager
         
         // pushes name to manager array
         this.employeeData.push(employeeId)
         console.log(this.employeeData)
-
+        
+        // directs to get email function
+        this.employeeEmailFunction()
+    
      
-      });
+    })
   }
 
   employeeRoleQuestion() {
@@ -68,8 +82,9 @@ class Aplication {
 
     // if role is assigned 'Manager'
     if (this.roleAssign === 'Manager') {
-        this.employeeInfo.getEmployeeId()
-
+        this.employeeIdQuestion()
+    
+    // after first rotation role wont be assigned to manager
     } else {
         
         inquirer
@@ -81,7 +96,12 @@ class Aplication {
             }).then(answer => {
 
                 console.log(answer)
-                if(answer.employeeChoice === 'Engineer') {
+
+                // if (answer.employeeChoice === 'Manager') {
+                //     console.log('MANAGER')
+
+                // } else 
+                if (answer.employeeChoice === 'Engineer') {
                     console.log('ENGINEER')
                     
                 } else if (answer.employeeChoice === 'Intern') {
