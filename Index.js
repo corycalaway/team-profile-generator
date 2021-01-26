@@ -4,10 +4,10 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const fs = require("fs");
 const inquirer = require("inquirer");
-const {createHtml, generateData} = require('./lib/Launch')
+// const {createHtml, generateData} = require('./lib/Launch')
 
 class Aplication {
-  constructor() {
+  constructor(answer) {
     this.employeeInfo = [];
     this.employeeData = [];
     this.caller = "";
@@ -226,9 +226,19 @@ class Aplication {
     // .then(answer => {
     //   return console.log(answer)
     // })
-    generateData(this.employeeData)
-    
+   this.generateData()
+    // this.generateData()
+    // .then(answer => {
+    //   console.log(answer)
+    // }
+      
+  // )
+    // this.completeDocument()
   }
+
+  // completeDocument() {
+  //   createHtml()
+  // }
   // writeFunction() {
   //   return generateData()
   //   .then(answer => {
@@ -239,7 +249,35 @@ class Aplication {
   //   // })
   //   // console.log(this.EmployeeData)
   // }
-}
+  createHtml() {
+    return new Promise((resolve, reject) => {
+        // uses data from generate markdown page as filecontent
+    fs.writeFile('./dist/team.html', this.employeeData, err => {
+        // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
+        if (err) {
+          reject(err);
+          // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function as well
+          return;
+        }
+  
+        // if everything went well, resolve the Promise and send the successful data to the `.then()` method
+        resolve({
+          ok: true,
+          message: 'File created!'
+    })})})
+}; 
+
+generateData() {
+  // console.log(employeeData)
+ this.employeeData = 'yo'
+ this.createHtml()
+  // return `${employeeData}`
+  //  return console.log(employeeData)
+  // const {Manager, Engineer, Intern} = employeeData;
+  // console.log(Manager, Engineer, Intern)
+  //  return Object.keys(employeeData).map(k => employeeData[k]))
+
+}}
 // .then(answer => {
 
 // })
