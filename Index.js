@@ -227,10 +227,36 @@ class Aplication {
     // .then(answer => {
     //   return console.log(answer)
     // })
-console.log('test')
-    for (let i = 0; i < this.employeeData.length; i++) {
-      console.log(this.employeeData[i])
-    }
+    // let allObjects = ''
+// console.log('test')
+//     for (let i = 0; i < this.employeeData.length; i++) {
+//        allObjects = this.employeeData[i]
+      
+      
+//     }
+    
+//     console.log(allObjects)
+
+    // let keys = Object.keys(this.employeeData)
+    // console.log(keys)
+
+    // let vals = Object.values(this.employeeData)
+    // console.log(vals)
+
+    let entries = Object.entries(this.employeeData)
+    // let entries = Object.values(this.employeeData)
+    // let entries = Object.keys(this.employeeData)
+    // console.log(entries)
+    console.log(entries [2])
+    console.log(entries)
+    console.log(JSON.stringify(entries [0] [1]))
+    console.log(JSON.stringify(entries [0] [0]))
+
+    let managerHtml = JSON.stringify(entries [0] [1])
+    // let newEntry = JSON.stringify(entries [0] [1])
+    // console.log(newEntry)
+
+   
     // console.log(this.employeeData[1])
     // console.log(this.caller)
     // console.log(this.completedData)
@@ -242,12 +268,19 @@ console.log('test')
         <title>Document</title>
     
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="./assets/css/style.css" rel="stylesheet" />
+       <!-- <link href="./assets/css/style.css" rel="stylesheet" /> -->
     
     </head>
     <body>
+        <header class='container-fluid bg-danger text-center text-white'>
     
-        
+            <h1>My Team</h1>
+    
+        </header>
+    
+        <div>
+            <h2>${managerHtml}</h2>
+        </div>
     </body>
     </html>`
 
