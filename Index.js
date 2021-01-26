@@ -33,14 +33,18 @@ class Aplication {
                 // } else 
                 if (answer.employeeChoice === 'Engineer') {
                   this.roleAssign = 'Engineer'
+                  this.caller = new Engineer()
+
                    return this.startApp()
                  
                     
                 } else if (answer.employeeChoice === 'Intern') {
                   this.roleAssign = 'Intern'
+                  this.caller = new Intern()
                     return this.startApp()
                 } else {
                     console.log('Complete')
+                    
                 }
                 // creates a manager
                 
@@ -75,11 +79,16 @@ class Aplication {
     //   });
   }
 
+  startAppManager() {
+    this.caller = new Manager()
+    return this.startApp()
+  }
+
   startApp() {
 
     // calls manager class
     
-    this.caller = new Employee()
+    
     //this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
 
     // gets the employee name
@@ -105,7 +114,7 @@ class Aplication {
 
     })
     .then((answer) => {
-      if(this.roleAssign === 'Manager') {
+      if(this.caller.getEmployeeRole() === 'Manager') {
         // clears previous role
         this.roleAssign === ''
 
@@ -135,7 +144,7 @@ class Aplication {
         // if role is engineer
 
         // if engineer role
-    } else if (this.roleAssign === 'Engineer') {
+    } else if (this.caller.getEmployeeRole() === 'Engineer') {
 
 // clears previous role
 this.roleAssign === ''
@@ -160,7 +169,7 @@ this.caller.getGitHub()
   return  this.employeeRoleQuestion()
 })
 
-    } else if (this.roleAssign === 'Intern') {
+    } else if (this.caller.getEmployeeRole() === 'Intern') {
 
       // clears old role
       this.roleAssign === ''
@@ -357,7 +366,7 @@ return this.caller.getSchool()
 
 // }
 // sets manager Info to equal employeeName
-new Aplication().startApp();
+new Aplication().startAppManager();
 
 // .then(savedData => {
 //     console.log(savedData)
