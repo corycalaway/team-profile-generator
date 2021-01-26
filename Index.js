@@ -106,22 +106,84 @@ class Aplication {
     })
     .then((answer) => {
       if(this.roleAssign === 'Manager') {
+        // clears previous role
         this.roleAssign === ''
-        // gets offic number
-        this.caller = new Manager()
-        this.caller.getOfficeNumber(answer)
+
+        
+
+        console.log(answer.employeeName)
+        // gets office number
+        const [employeeName, employeeId, employeeEmail] = this.employeeInfo
+        this.caller = new Manager(employeeName, employeeId, employeeEmail)
+        this.caller.getOfficeNumber()
+
+        // pushes office number to array
         .then(answer => {
+         
           this.employeeInfo.push(answer.officeNumber)
+          const [employeeName, employeeId, employeeEmail, officeNumber] = this.employeeInfo;
+          this.caller = new Manager(employeeName, employeeId, employeeEmail, officeNumber)
+
+          // return console.log(this.caller)
+          // asks for aditional team members
           return  this.employeeRoleQuestion()
         })
 
       // this.employeeInfo.push(answer.officeNumber)
       
-  
+
+        // if role is engineer
+
+        // if engineer role
     } else if (this.roleAssign === 'Engineer') {
-      return console.log('Engineer')
+
+// clears previous role
+this.roleAssign === ''
+
+        
+
+console.log(answer.employeeName)
+// gets office number
+const [employeeName, employeeId, employeeEmail] = this.employeeInfo
+this.caller = new Engineer(employeeName, employeeId, employeeEmail)
+this.caller.getGitHub()
+
+// pushes office number to array
+.then(answer => {
+ 
+  this.employeeInfo.push(answer.employeeGitHub)
+  const [employeeName, employeeId, employeeEmail, employeeGitHub] = this.employeeInfo;
+  this.caller = new Engineer(employeeName, employeeId, employeeEmail, employeeGitHub)
+
+  // return console.log(this.caller)
+  // asks for aditional team members
+  return  this.employeeRoleQuestion()
+})
+
     } else if (this.roleAssign === 'Intern') {
-      return console.log('Intern')
+
+      // clears old role
+      this.roleAssign === ''
+
+        
+
+console.log(answer.employeeName)
+// gets office number
+const [employeeName, employeeId, employeeEmail] = this.employeeInfo
+this.caller = new Intern(employeeName, employeeId, employeeEmail)
+return this.caller.getSchool()
+
+// pushes office number to array
+.then(answer => {
+ 
+  this.employeeInfo.push(answer.employeeSchool)
+  const [employeeName, employeeId, employeeEmail, employeeSchool] = this.employeeInfo;
+  this.caller = new Intern(employeeName, employeeId, employeeEmail, employeeSchool)
+
+  // return console.log(this.caller)
+  // asks for aditional team members
+  return  this.employeeRoleQuestion()
+})
     } else {
       return console.log('Complete')
     }
