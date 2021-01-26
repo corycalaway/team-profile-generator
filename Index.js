@@ -6,7 +6,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 
 class Aplication {
-  constructor(roleAssign) {
+  constructor() {
     this.employeeInfo;
     this.employeeData = [];
     this.roleAssign = '';
@@ -15,28 +15,68 @@ class Aplication {
   startApp() {
 
 
-    inquirer
-      .prompt({
-        type: "text",
-        name: "employeeName",
-        message: "Please enter Managers name",
-      })
-      .then(({ employeeName }) => {
+    return inquirer.prompt([
+        
+      {
+          type: 'input',
+          name: 'employeeName',
+          message: 'Enter Employee name.'
+      },
+      {
+          type: 'input',
+          name: 'employeeId',
+          message: 'Enter employee Id.'
+      },
+      {
+          type: 'input',
+          name: 'employeeEmail',
+          message: 'Enter employee email.'
+      },
+      {
+        type: 'input',
+        name: 'officeNumber',
+        message: 'Enter employee officeNumber.'
+    },
+     
+  ])   .then(answer => {
+    console.log(answer)
 
+      // const {employeeName, employeeId, employeeEmail} = employeeReturn
+      // console.log(employeeName, employeeId, employeeEmail)
+      
+      this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
+      console.log('yay')
+      console.log(this.employeeInfo)
+      console.log('yay')
+
+     //this.employeeData.push(employeeName, employeeId, employeeEmail)
+     this.employeeData.push(this.employeeInfo)
+     console.log(this.employeeData)
+  })
+  }
+ 
+// prompt for employee name
+  employeeNameQuestion() {
+    console.log(this.employeeInfo)
+    this.employeeInfo = new 
+    // uses employee to call getemployeeid function
+    this.employeeInfo.getEmployeeName()
+    // this.managerId = new Employee().getEmployeeId();
+    .then(({ employeeId }) => {
+        console.log(employeeId)
         // creates a manager
-        this.employeeInfo = new Manager(employeeName);
         
         // pushes name to manager array
-        this.employeeData.push(employeeName)
+        this.employeeData.push(employeeId)
         console.log(this.employeeData)
-        this.roleAssign = 'Manager'
-        this.employeeRoleQuestion()
-      });
+        
+        // directs to get email function
+        this.employeeIdQuestion()
+    
+     
+    })
+
   }
-
- 
-
-  employeeNameQuestion() {}
 
   // get employees id
   employeeIdQuestion() {
@@ -110,9 +150,12 @@ class Aplication {
 
                 // } else 
                 if (answer.employeeChoice === 'Engineer') {
+                  this.roleAssign = 'Engineer'
+                  this.employeeNameQuestion()
                     console.log('ENGINEER')
                     
                 } else if (answer.employeeChoice === 'Intern') {
+                  this.roleAssign = 'Intern'
                     console.log('INTERN')
                 } else {
                     console.log('Complete')
@@ -154,7 +197,19 @@ class Aplication {
 
     this.employeeInfo.getOfficeNumber()
 
-    
+    .then(({ officeNumber }) => {
+      console.log(officeNumber)
+      // creates a manager
+      
+      // pushes officenumber to manager array
+      this.employeeData.push(officeNumber)
+      console.log(this.employeeData)
+
+      
+      
+  
+   
+  })
   }
 }
 
