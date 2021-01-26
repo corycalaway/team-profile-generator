@@ -15,9 +15,17 @@ class Aplication {
   }
 
   employeeRoleQuestion() {
-    console.log(this.employeeInfo);
+    
+     //console.log(this.employeeInfo);
     this.employeeData.push(this.caller);
-    console.log(this.employeeData);
+    // this.caller = {};
+    // console.log(this.employeeData)
+    // console.log(this.caller)
+    this.employeeInfo = []
+
+
+
+    //  console.log(this.employeeData);
     inquirer
       .prompt({
         type: "list",
