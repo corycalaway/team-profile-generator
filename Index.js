@@ -7,58 +7,114 @@ const inquirer = require("inquirer");
 
 class Aplication {
   constructor() {
-    this.employeeInfo;
+    this.employeeInfo = []
     this.employeeData = [];
-    this.roleAssign = '';
+    this.caller = '';
   }
 
   startApp() {
 
+    // calls manager class
+    this.caller = new Manager()
+    //this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
 
-    return inquirer.prompt([
-        
-      {
-          type: 'input',
-          name: 'employeeName',
-          message: 'Enter Employee name.'
-      },
-      {
-          type: 'input',
-          name: 'employeeId',
-          message: 'Enter employee Id.'
-      },
-      {
-          type: 'input',
-          name: 'employeeEmail',
-          message: 'Enter employee email.'
-      },
-      {
-        type: 'input',
-        name: 'officeNumber',
-        message: 'Enter employee officeNumber.'
-    },
-     
-  ])   .then(answer => {
-    console.log(answer)
+     this.caller.getEmployeeName()
 
-      // const {employeeName, employeeId, employeeEmail} = employeeReturn
-      // console.log(employeeName, employeeId, employeeEmail)
+    .then((answer) => {
+       this.employeeInfo.push(answer.employeeName)
+      // return console.log(this.employeeInfo)
+      return this.caller.getEmployeeId(answer)
+    })
+    .then((answer) => {
+      this.employeeInfo.push(answer.employeeId)
+      return this.caller.getEmployeeEmail(answer)
       
-      this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-      console.log('yay')
-      console.log(this.employeeInfo)
-      console.log('yay')
+    })
+     .then(answer => {
+      this.employeeInfo.push(answer.employeeEmail)
+      return this.caller.getOfficeNumber(answer)
 
-     //this.employeeData.push(employeeName, employeeId, employeeEmail)
-     this.employeeData.push(this.employeeInfo)
-     console.log(this.employeeData)
-  })
+    })
+    .then(answer => {
+      this.employeeInfo.push(answer.officeNumber)
+      return  console.log(this.employeeInfo)
+
+    })
+    // .then(answer => {
+      
+    // })
+    // .then((answer) => {
+    //   return console.log(this.employeInfo)
+    // })
+    // .then((answer) => {
+    //   // this.employeeInfo.push(answer.employeeName)
+   
+    //   return this.caller.getEmployeeId(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
+
+    // }).then(answer => {
+      
+    //   // this.employeeInfo.push(answer.employeeId)
+     
+
+    //  return this.caller.getEmployeeEmail(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
+
+    // })
+    // .then(answer => {
+    //   // this.employeeInfo.push(answer)
+
+    //   return this.caller.getOfficeNumber(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
+
+
+
+    // })
+    // .then(answer => {
+    //   // this.employeeInfo.push(answer3)
+    //   return console.log(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
+    // })
+
+
+  //   return inquirer.prompt([
+        
+  //     {
+  //         type: 'input',
+  //         name: 'employeeName',
+  //         message: 'Enter Employee name.'
+  //     },
+  //     {
+  //         type: 'input',
+  //         name: 'employeeId',
+  //         message: 'Enter employee Id.'
+  //     },
+  //     {
+  //         type: 'input',
+  //         name: 'employeeEmail',
+  //         message: 'Enter employee email.'
+  //     },
+  //     {
+  //       type: 'input',
+  //       name: 'officeNumber',
+  //       message: 'Enter employee officeNumber.'
+  //   },
+     
+  // ])   .then(answer => {
+  //   console.log(answer)
+
+  
+  //     this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
+  //     console.log('yay')
+  //     console.log(this.employeeInfo)
+  //     console.log('yay')
+
+  //    //this.employeeData.push(employeeName, employeeId, employeeEmail)
+  //    this.employeeData.push(this.employeeInfo)
+  //    console.log(this.employeeData)
+  // })
   }
  
 // prompt for employee name
   employeeNameQuestion() {
     console.log(this.employeeInfo)
-    this.employeeInfo = new 
+    
     // uses employee to call getemployeeid function
     this.employeeInfo.getEmployeeName()
     // this.managerId = new Employee().getEmployeeId();
