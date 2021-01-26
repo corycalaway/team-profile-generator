@@ -15,8 +15,9 @@ class Aplication {
 
 
   employeeRoleQuestion() {
-   console.log(this.employeeInfo, this.employeeData)
-        
+   console.log(this.employeeInfo)
+      this.employeeData.push(this.caller)
+   console.log(this.employeeData)
         inquirer
             .prompt({
                 type: 'list',
@@ -44,7 +45,7 @@ class Aplication {
                     return this.startApp()
                 } else {
                     console.log('Complete')
-                    
+
                 }
                 // creates a manager
                 
