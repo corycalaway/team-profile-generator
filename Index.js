@@ -227,10 +227,13 @@ class Aplication {
     // .then(answer => {
     //   return console.log(answer)
     // })
-
-    console.log(this.employeeData)
-
-    console.log(this.completedData)
+console.log('test')
+    for (let i = 0; i < this.employeeData.length; i++) {
+      console.log(this.employeeData[i])
+    }
+    // console.log(this.employeeData[1])
+    // console.log(this.caller)
+    // console.log(this.completedData)
     this.completedData = `<!DOCTYPE html>
     <html lang="en">
     <head>
