@@ -10,36 +10,123 @@ class Aplication {
     this.employeeInfo = []
     this.employeeData = [];
     this.caller = '';
+    this.roleAssign = 'Manager'
+  }
+
+
+  employeeRoleQuestion() {
+   console.log(this.employeeInfo, this.employeeData)
+        
+        inquirer
+            .prompt({
+                type: 'list',
+                name: 'employeeChoice',
+                message: 'Would you like to add any employees to team.',
+                choices: ['Engineer', 'Intern', 'Complete']
+            }).then(answer => {
+
+                console.log(answer)
+
+                // if (answer.employeeChoice === 'Manager') {
+                //     console.log('MANAGER')
+
+                // } else 
+                if (answer.employeeChoice === 'Engineer') {
+                  this.roleAssign = 'Engineer'
+                   return this.startApp()
+                 
+                    
+                } else if (answer.employeeChoice === 'Intern') {
+                  this.roleAssign = 'Intern'
+                    return this.startApp()
+                } else {
+                    console.log('Complete')
+                }
+                // creates a manager
+                
+                // pushes name to manager array
+                // this.employeeData.push(employeeId)
+                // console.log(this.employeeData)
+        
+             
+              });
+
+
+
+    //     if (this.roleAssign === 'Engineer') {
+
+    // } else if (this.roleAssign === 'Intern') {
+
+    // } else {
+
+    
+    // uses employee to call getemployeeid function
+    // this.employeeInfo.getEmployeeRole()
+    // // this.managerId = new Employee().getEmployeeId();
+    // .then(({ employeeId }) => {
+
+    //     // creates a manager
+        
+    //     // pushes name to manager array
+    //     this.employeeData.push(employeeId)
+    //     console.log(this.employeeData)
+
+     
+    //   });
   }
 
   startApp() {
 
     // calls manager class
-    this.caller = new Manager()
+    
+    this.caller = new Employee()
     //this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
 
+    // gets the employee name
      this.caller.getEmployeeName()
 
     .then((answer) => {
        this.employeeInfo.push(answer.employeeName)
       // return console.log(this.employeeInfo)
+
+      // gets employee id
       return this.caller.getEmployeeId(answer)
     })
     .then((answer) => {
       this.employeeInfo.push(answer.employeeId)
+
+      // gets employee email
       return this.caller.getEmployeeEmail(answer)
       
     })
      .then(answer => {
-      this.employeeInfo.push(answer.employeeEmail)
-      return this.caller.getOfficeNumber(answer)
+      return this.employeeInfo.push(answer.employeeEmail)
+       
 
     })
-    .then(answer => {
-      this.employeeInfo.push(answer.officeNumber)
-      return  console.log(this.employeeInfo)
+    .then((answer) => {
+      if(this.roleAssign === 'Manager') {
+        this.roleAssign === ''
+        // gets offic number
+        this.caller = new Manager()
+        this.caller.getOfficeNumber(answer)
+        .then(answer => {
+          this.employeeInfo.push(answer.officeNumber)
+          return  this.employeeRoleQuestion()
+        })
 
-    })
+      // this.employeeInfo.push(answer.officeNumber)
+      
+  
+    } else if (this.roleAssign === 'Engineer') {
+      return console.log('Engineer')
+    } else if (this.roleAssign === 'Intern') {
+      return console.log('Intern')
+    } else {
+      return console.log('Complete')
+    }
+  })
+}}
     // .then(answer => {
       
     // })
@@ -109,165 +196,99 @@ class Aplication {
   //    this.employeeData.push(this.employeeInfo)
   //    console.log(this.employeeData)
   // })
-  }
+  // }
  
-// prompt for employee name
-  employeeNameQuestion() {
-    console.log(this.employeeInfo)
+// // prompt for employee name
+//   employeeNameQuestion() {
+//     console.log(this.employeeInfo)
     
-    // uses employee to call getemployeeid function
-    this.employeeInfo.getEmployeeName()
-    // this.managerId = new Employee().getEmployeeId();
-    .then(({ employeeId }) => {
-        console.log(employeeId)
-        // creates a manager
+//     // uses employee to call getemployeeid function
+//     this.employeeInfo.getEmployeeName()
+//     // this.managerId = new Employee().getEmployeeId();
+//     .then(({ employeeId }) => {
+//         console.log(employeeId)
+//         // creates a manager
         
-        // pushes name to manager array
-        this.employeeData.push(employeeId)
-        console.log(this.employeeData)
+//         // pushes name to manager array
+//         this.employeeData.push(employeeId)
+//         console.log(this.employeeData)
         
-        // directs to get email function
-        this.employeeIdQuestion()
-    
-     
-    })
-
-  }
-
-  // get employees id
-  employeeIdQuestion() {
-    console.log(this.employeeInfo)
-
-    // uses employee to call getemployeeid function
-    this.employeeInfo.getEmployeeId()
-    // this.managerId = new Employee().getEmployeeId();
-    .then(({ employeeId }) => {
-        console.log(employeeId)
-        // creates a manager
-        
-        // pushes name to manager array
-        this.employeeData.push(employeeId)
-        console.log(this.employeeData)
-        
-        // directs to get email function
-        this.employeeEmailFunction()
+//         // directs to get email function
+//         this.employeeIdQuestion()
     
      
-    })
-  }
+//     })
 
-  employeeEmailFunction() {
-    // gets email of employee
-      this.employeeInfo.getEmployeeEmail()
+//   }
 
-      .then(({ employeeEmail }) => {
+//   // get employees id
+//   employeeIdQuestion() {
+//     console.log(this.employeeInfo)
+
+//     // uses employee to call getemployeeid function
+//     this.employeeInfo.getEmployeeId()
+//     // this.managerId = new Employee().getEmployeeId();
+//     .then(({ employeeId }) => {
+//         console.log(employeeId)
+//         // creates a manager
+        
+//         // pushes name to manager array
+//         this.employeeData.push(employeeId)
+//         console.log(this.employeeData)
+        
+//         // directs to get email function
+//         this.employeeEmailFunction()
+    
+     
+//     })
+//   }
+
+//   employeeEmailFunction() {
+//     // gets email of employee
+//       this.employeeInfo.getEmployeeEmail()
+
+//       .then(({ employeeEmail }) => {
        
-        this.employeeData.push(employeeEmail)
-      console.log(this.employeeData)
+//         this.employeeData.push(employeeEmail)
+//       console.log(this.employeeData)
 
-      console.log(this.roleAssign)
+//       console.log(this.roleAssign)
 
-      // call for individual items based on role. 
-      if(this.roleAssign === 'Manager') {
+//       // call for individual items based on role. 
+//       if(this.roleAssign === 'Manager') {
         
-        this.managerQuestion();
+//         this.managerQuestion();
 
-      } else if (this.roleAssign === 'Engineer') {
+//       } else if (this.roleAssign === 'Engineer') {
 
-      } else if (this.roleAssign === 'Intern') {
+//       } else if (this.roleAssign === 'Intern') {
 
-      }
+//       }
 
-      })
-  }
-
-  employeeRoleQuestion() {
-    console.log(this.employeeInfo)
-
-    // if role is assigned 'Manager'
-    if (this.roleAssign === 'Manager') {
-        this.employeeIdQuestion()
-    
-    // after first rotation role wont be assigned to manager
-    } else {
-        
-        inquirer
-            .prompt({
-                type: 'list',
-                name: 'employeeChoice',
-                message: 'Would you like to add any employees to team.',
-                choices: ['Engineer', 'Intern', 'Complete']
-            }).then(answer => {
-
-                console.log(answer)
-
-                // if (answer.employeeChoice === 'Manager') {
-                //     console.log('MANAGER')
-
-                // } else 
-                if (answer.employeeChoice === 'Engineer') {
-                  this.roleAssign = 'Engineer'
-                  this.employeeNameQuestion()
-                    console.log('ENGINEER')
-                    
-                } else if (answer.employeeChoice === 'Intern') {
-                  this.roleAssign = 'Intern'
-                    console.log('INTERN')
-                } else {
-                    console.log('Complete')
-                }
-                // creates a manager
-                
-                // pushes name to manager array
-                // this.employeeData.push(employeeId)
-                // console.log(this.employeeData)
-        
-             
-              });
+//       })
+//   }
 
 
 
-    //     if (this.roleAssign === 'Engineer') {
+//   managerQuestion() {
 
-    // } else if (this.roleAssign === 'Intern') {
+//     this.employeeInfo.getOfficeNumber()
 
-    // } else {
-
-    }
-    // uses employee to call getemployeeid function
-    // this.employeeInfo.getEmployeeRole()
-    // // this.managerId = new Employee().getEmployeeId();
-    // .then(({ employeeId }) => {
-
-    //     // creates a manager
-        
-    //     // pushes name to manager array
-    //     this.employeeData.push(employeeId)
-    //     console.log(this.employeeData)
-
-     
-    //   });
-  }
-
-  managerQuestion() {
-
-    this.employeeInfo.getOfficeNumber()
-
-    .then(({ officeNumber }) => {
-      console.log(officeNumber)
-      // creates a manager
+//     .then(({ officeNumber }) => {
+//       console.log(officeNumber)
+//       // creates a manager
       
-      // pushes officenumber to manager array
-      this.employeeData.push(officeNumber)
-      console.log(this.employeeData)
+//       // pushes officenumber to manager array
+//       this.employeeData.push(officeNumber)
+//       console.log(this.employeeData)
 
       
       
   
    
-  })
-  }
-}
+//   })
+//   }
+// }
 
 // function structureApp() {
 //     this.managerData = [];
