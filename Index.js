@@ -12,6 +12,7 @@ class Aplication {
     this.employeeData = [];
     this.caller = "";
     this.roleAssign = "Manager";
+    this.completedData = "fail"
   }
 
   employeeRoleQuestion() {
@@ -226,7 +227,13 @@ class Aplication {
     // .then(answer => {
     //   return console.log(answer)
     // })
-   this.generateData()
+
+    console.log(this.employeeData)
+
+    console.log(this.completedData)
+
+
+   this.createHtml(this.completedData)
     // this.generateData()
     // .then(answer => {
     //   console.log(answer)
@@ -249,10 +256,10 @@ class Aplication {
   //   // })
   //   // console.log(this.EmployeeData)
   // }
-  createHtml() {
+  createHtml(completedData) {
     return new Promise((resolve, reject) => {
         // uses data from generate markdown page as filecontent
-    fs.writeFile('./dist/team.html', this.employeeData, err => {
+    fs.writeFile('./dist/team.html', completedData, err => {
         // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
         if (err) {
           reject(err);
@@ -267,17 +274,7 @@ class Aplication {
     })})})
 }; 
 
-generateData() {
-  // console.log(employeeData)
- this.employeeData = 'yo'
- this.createHtml()
-  // return `${employeeData}`
-  //  return console.log(employeeData)
-  // const {Manager, Engineer, Intern} = employeeData;
-  // console.log(Manager, Engineer, Intern)
-  //  return Object.keys(employeeData).map(k => employeeData[k]))
-
-}}
+}
 // .then(answer => {
 
 // })
