@@ -253,19 +253,25 @@ class Aplication {
     // console.log(entries [2])
     // console.log(entries)
     // console.log(JSON.stringify(entries))
-    this.employeeData.forEach(element => console.log(element.employeeName))
+    // this.employeeData.forEach(element => )
     
+    
+    let managerObject = '';
+
+
    let managerData = this.employeeData.filter(element => {
       if(element.officeNumber) {
+     managerObject = `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.officeNumber}</h2> </div>`
         return true
       }
     })[0]
+    
 
     let engineerData = this.employeeData.filter(element => {
       if(element.employeeGitHub) {
         return true
       }
-    })[0]
+    })[1]
 
     let internData = this.employeeData.filter(element => {
       if(element.employeeSchool) {
@@ -279,6 +285,14 @@ class Aplication {
     console.log(engineerData)
     console.log('internssssss')
     console.log(internData)
+
+    // managerData = JSON.stringify(managerData)
+console.log(managerData)
+    // removes all instancess of employee name
+    
+    // managerData = managerData.replace('{"employeeName":"', '')
+    // managerData = managerData.replace('"', '')
+    // managerData = managerData.replace(',', '')
     // filter arrays with manager/intern/engineer
     
 
@@ -318,7 +332,7 @@ class Aplication {
         </header>
     
         <div>
-            <h2>${managerData}</h2>
+            ${managerObject}
         </div>
     </body>
     </html>`
