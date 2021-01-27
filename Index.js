@@ -248,7 +248,8 @@ class Aplication {
     console.log(JSON.stringify(this.employeeData))
     // let entries = Object.entries(this.employeeData)
     // let entries = Object.values(this.employeeData)
-    // let entries = Object.keys(this.employeeData)
+     let entries = Object.keys(this.employeeData)
+     console.log(entries.length)
     // console.log(entries)
     // console.log(entries [2])
     // console.log(entries)
@@ -257,21 +258,25 @@ class Aplication {
     
     
     let managerObject = '';
-
+    let engineerObject = '';
+      let index1 = 0;
+      let index2 = 0;
 
    let managerData = this.employeeData.filter(element => {
       if(element.officeNumber) {
+        index1++
      managerObject = `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.officeNumber}</h2> </div>`
         return true
       }
-    })[0]
+    })[index1]
     
 
     let engineerData = this.employeeData.filter(element => {
       if(element.employeeGitHub) {
+        engineerObject = `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.employeeGitHub}</h2> </div>`
         return true
       }
-    })[1]
+    })[index2]
 
     let internData = this.employeeData.filter(element => {
       if(element.employeeSchool) {
@@ -333,6 +338,7 @@ console.log(managerData)
     
         <div>
             ${managerObject}
+            ${engineerObject}
         </div>
     </body>
     </html>`
