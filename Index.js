@@ -267,7 +267,7 @@ class Aplication {
    let managerData = this.employeeData.filter(element => {
       if(element.officeNumber) {
         index1++
-     managerObject = `<div class='row'> <h2 class='col'>${element.employeeName}</h2> <h3 class='col'>Manager</h3> <h3 class='col infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>Office Number: ${element.officeNumber}</h3> </div>`
+     managerObject = `<div class='objectsHtml'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>Office Number: ${element.officeNumber}</h3> </div>`
         return true
       }
     })[index1]
@@ -275,7 +275,7 @@ class Aplication {
 
     let engineerData = this.employeeData.filter(element => {
       if(element.employeeGitHub) {
-        engineerObject = engineerObject + `<div class='row'> <h2 class='col'>${element.employeeName}</h2> <h3 class='col'>Engineer</h3> <h3 class='col infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div>`
+        engineerObject = engineerObject + `<div class='objectsHtml'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div>`
         return true
       }
     })[index2]
@@ -341,7 +341,11 @@ console.log(managerData)
     
         <div class='container-fluid'>
             ${managerObject}
+        </div>
+        <div class='container-fluid'>
             ${engineerObject}
+            </div>
+            <div class='container-fluid'>
             ${internObject}
         </div>
     </body>
