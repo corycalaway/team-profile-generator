@@ -273,7 +273,7 @@ class Aplication {
 
     let engineerData = this.employeeData.filter(element => {
       if(element.employeeGitHub) {
-        engineerObject = `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.employeeGitHub}</h2> </div>`
+        engineerObject = engineerObject + `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.employeeGitHub}</h2> </div>`
         return true
       }
     })[index2]
