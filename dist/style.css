@@ -1,0 +1,14 @@
+.container-fluid {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.objectsHtml {
+    background-color: aqua;
+    padding: 0px 30px 0px 30px;
+}
+
+.centerContent {
+
+    justify-content: center;
+}
