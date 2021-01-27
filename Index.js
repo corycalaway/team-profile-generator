@@ -243,20 +243,59 @@ class Aplication {
     // let vals = Object.values(this.employeeData)
     // console.log(vals)
 
-    let entries = Object.entries(this.employeeData)
+ 
+
+    console.log(JSON.stringify(this.employeeData))
+    // let entries = Object.entries(this.employeeData)
     // let entries = Object.values(this.employeeData)
     // let entries = Object.keys(this.employeeData)
     // console.log(entries)
-    console.log(entries [2])
-    console.log(entries)
-    console.log(JSON.stringify(entries [0] [1]))
-    console.log(JSON.stringify(entries [0] [0]))
+    // console.log(entries [2])
+    // console.log(entries)
+    // console.log(JSON.stringify(entries))
+    this.employeeData.forEach(element => console.log(element.employeeName))
+    
+   let managerData = this.employeeData.filter(element => {
+      if(element.officeNumber) {
+        return true
+      }
+    })[0]
 
-    let managerHtml = JSON.stringify(entries [0] [1])
+    let engineerData = this.employeeData.filter(element => {
+      if(element.employeeGitHub) {
+        return true
+      }
+    })[0]
+
+    let internData = this.employeeData.filter(element => {
+      if(element.employeeSchool) {
+        return true
+      }
+    })[0]
+
+    console.log('managersssssssssss')
+    console.log(managerData)
+    console.log('engineeeerssssss')
+    console.log(engineerData)
+    console.log('internssssss')
+    console.log(internData)
+    // filter arrays with manager/intern/engineer
+    
+
+
+    // let managerHtml = JSON.stringify(entries [0] [1])
+  
+    // for(i = 0; i < entries.length; i++) {
+
+      // entries.forEach(element => console.log(element[0].employeename))
+    // }
     // let newEntry = JSON.stringify(entries [0] [1])
     // console.log(newEntry)
 
-   
+   // variable for each object
+   // create an object that holds the data and a piece of html that represents what needed. 
+
+  
     // console.log(this.employeeData[1])
     // console.log(this.caller)
     // console.log(this.completedData)
@@ -279,7 +318,7 @@ class Aplication {
         </header>
     
         <div>
-            <h2>${managerHtml}</h2>
+            <h2>${managerData}</h2>
         </div>
     </body>
     </html>`
