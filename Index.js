@@ -259,13 +259,15 @@ class Aplication {
     
     let managerObject = '';
     let engineerObject = '';
+    let internObject = ''
       let index1 = 0;
       let index2 = 0;
+      let index3 = 0;
 
    let managerData = this.employeeData.filter(element => {
       if(element.officeNumber) {
         index1++
-     managerObject = `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.officeNumber}</h2> </div>`
+     managerObject = `<div class='row'> <h2 class='col'>${element.employeeName}</h2> <h3 class='col'>Manager</h3> <h3 class='col infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>Office Number: ${element.officeNumber}</h3> </div>`
         return true
       }
     })[index1]
@@ -273,16 +275,17 @@ class Aplication {
 
     let engineerData = this.employeeData.filter(element => {
       if(element.employeeGitHub) {
-        engineerObject = engineerObject + `<div> <h2> Manager Name: ${element.employeeName}</h2> <h2> Employee Id: ${element.employeeId}</h2> <h2> Manager Email: ${element.employeeEmail}</h2> <h2>Office Number: ${element.employeeGitHub}</h2> </div>`
+        engineerObject = engineerObject + `<div class='row'> <h2 class='col'>${element.employeeName}</h2> <h3 class='col'>Engineer</h3> <h3 class='col infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='col'>Intern</h3> <h3 class='col infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div>`
         return true
       }
     })[index2]
 
     let internData = this.employeeData.filter(element => {
       if(element.employeeSchool) {
+        internObject = internObject + `<div class='objectsHtml'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>School: ${element.employeeSchool}</h3> </div>`
         return true
       }
-    })[0]
+    })[index3]
 
     console.log('managersssssssssss')
     console.log(managerData)
@@ -336,9 +339,10 @@ console.log(managerData)
     
         </header>
     
-        <div>
+        <div class='container'>
             ${managerObject}
             ${engineerObject}
+            ${internObject}
         </div>
     </body>
     </html>`
