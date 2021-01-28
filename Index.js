@@ -1,11 +1,8 @@
-const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const fs = require("fs");
 const inquirer = require("inquirer");
-const { Console } = require("console");
-// const {createHtml, generateData} = require('./lib/Launch')
 
 class Aplication {
   constructor(answer) {
@@ -13,22 +10,14 @@ class Aplication {
     this.employeeData = [];
     this.caller = "";
     this.roleAssign = "Manager";
-    this.completedData = "fail"
-    this.managerFirst = 0
+    this.completedData = "fail";
+    this.managerFirst = 0;
   }
 
   employeeRoleQuestion() {
-    
-     //console.log(this.employeeInfo);
     this.employeeData.push(this.caller);
-    // this.caller = {};
-    // console.log(this.employeeData)
-    // console.log(this.caller)
-    this.employeeInfo = []
+    this.employeeInfo = [];
 
-
-
-    //  console.log(this.employeeData);
     inquirer
       .prompt({
         type: "list",
@@ -39,10 +28,6 @@ class Aplication {
       .then((answer) => {
         console.log(answer);
 
-        // if (answer.employeeChoice === 'Manager') {
-        //     console.log('MANAGER')
-
-        // } else
         if (answer.employeeChoice === "Engineer") {
           this.roleAssign = "Engineer";
           this.caller = new Engineer();
@@ -53,35 +38,9 @@ class Aplication {
           this.caller = new Intern();
           return this.startApp();
         } else {
-          this.writeFunction()
-          // write code files
-          // this.writeFunction();
+          this.writeFunction();
         }
-        // creates a manager
-
-        // pushes name to manager array
-        // this.employeeData.push(employeeId)
-        // console.log(this.employeeData)
       });
-
-    //     if (this.roleAssign === 'Engineer') {
-
-    // } else if (this.roleAssign === 'Intern') {
-
-    // } else {
-
-    // uses employee to call getemployeeid function
-    // this.employeeInfo.getEmployeeRole()
-    // // this.managerId = new Employee().getEmployeeId();
-    // .then(({ employeeId }) => {
-
-    //     // creates a manager
-
-    //     // pushes name to manager array
-    //     this.employeeData.push(employeeId)
-    //     console.log(this.employeeData)
-
-    //   });
   }
 
   startAppManager() {
@@ -93,18 +52,14 @@ class Aplication {
     // calls manager class
 
     if (this.managerFirst === 0) {
-      this.managerFirst++
-      console.log('Please enter Managers Information')
+      this.managerFirst++;
+      console.log("Please enter Managers Information");
     }
-    //this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-    console.log(this.caller)
-    // gets the employee name
     this.caller
       .getEmployeeName()
 
       .then((answer) => {
         this.employeeInfo.push(answer.employeeName);
-        // return console.log(this.employeeInfo)
 
         // gets employee id
         return this.caller.getEmployeeId(answer);
@@ -145,15 +100,9 @@ class Aplication {
                 employeeEmail,
                 officeNumber
               );
-
-              // return console.log(this.caller)
               // asks for aditional team members
               return this.employeeRoleQuestion();
             });
-
-          // this.employeeInfo.push(answer.officeNumber)
-
-          // if role is engineer
 
           // if engineer role
         } else if (this.caller.getEmployeeRole() === "Engineer") {
@@ -183,8 +132,6 @@ class Aplication {
                 employeeGitHub
               );
 
-              // return console.log(this.caller)
-              // asks for aditional team members
               return this.employeeRoleQuestion();
             });
         } else if (this.caller.getEmployeeRole() === "Intern") {
@@ -216,117 +163,52 @@ class Aplication {
                   employeeSchool
                 );
 
-                // return console.log(this.caller)
                 // asks for aditional team members
                 return this.employeeRoleQuestion();
               })
           );
         } else {
           // return this.writeFunction()
-          this.writeFunction()
+          this.writeFunction();
         }
       });
   }
 
   writeFunction() {
-    // createHtml('testing')
-    // .then(answer => {
-    //   return console.log(answer)
-    // })
-    // let allObjects = ''
-// console.log('test')
-//     for (let i = 0; i < this.employeeData.length; i++) {
-//        allObjects = this.employeeData[i]
-      
-      
-//     }
-    
-//     console.log(allObjects)
+    let managerObject = "";
+    let engineerObject = "";
+    let internObject = "";
+    let index1 = 0;
+    let index2 = 0;
+    let index3 = 0;
 
-    // let keys = Object.keys(this.employeeData)
-    // console.log(keys)
-
-    // let vals = Object.values(this.employeeData)
-    // console.log(vals)
-
- 
-
-    console.log(JSON.stringify(this.employeeData))
-    // let entries = Object.entries(this.employeeData)
-    // let entries = Object.values(this.employeeData)
-     let entries = Object.keys(this.employeeData)
-     console.log(entries.length)
-    // console.log(entries)
-    // console.log(entries [2])
-    // console.log(entries)
-    // console.log(JSON.stringify(entries))
-    // this.employeeData.forEach(element => )
-    
-    
-    let managerObject = '';
-    let engineerObject = '';
-    let internObject = ''
-      let index1 = 0;
-      let index2 = 0;
-      let index3 = 0;
-
-   let managerData = this.employeeData.filter(element => {
-      if(element.officeNumber) {
-        index1++
-     managerObject = `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Manager</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>Office Number: ${element.officeNumber}</h3> </div> </div>`
-        return true
+    let managerData = this.employeeData.filter((element) => {
+      if (element.officeNumber) {
+        index1++;
+        managerObject = `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Manager</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>Office Number: ${element.officeNumber}</h3> </div> </div>`;
+        return true;
       }
-    })[index1]
-    
+    })[index1];
 
-    let engineerData = this.employeeData.filter(element => {
-      if(element.employeeGitHub) {
-        engineerObject = engineerObject + `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Engineer</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3>   <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div></div>`
-        return true
+    let engineerData = this.employeeData.filter((element) => {
+      if (element.employeeGitHub) {
+        engineerObject =
+          engineerObject +
+          `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Engineer</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3>   <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div></div>`;
+        return true;
       }
-    })[index2]
+    })[index2];
 
-    let internData = this.employeeData.filter(element => {
-      if(element.employeeSchool) {
-        internObject = internObject + `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>School: ${element.employeeSchool}</h3> </div> </div>`
-        return true
+    let internData = this.employeeData.filter((element) => {
+      if (element.employeeSchool) {
+        internObject =
+          internObject +
+          `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>School: ${element.employeeSchool}</h3> </div> </div>`;
+        return true;
       }
-    })[index3]
+    })[index3];
 
-    console.log('managersssssssssss')
-    console.log(managerData)
-    console.log('engineeeerssssss')
-    console.log(engineerData)
-    console.log('internssssss')
-    console.log(internData)
-
-    // managerData = JSON.stringify(managerData)
-console.log(managerData)
-    // removes all instancess of employee name
-    
-    // managerData = managerData.replace('{"employeeName":"', '')
-    // managerData = managerData.replace('"', '')
-    // managerData = managerData.replace(',', '')
-    // filter arrays with manager/intern/engineer
-    
-
-
-    // let managerHtml = JSON.stringify(entries [0] [1])
-  
-    // for(i = 0; i < entries.length; i++) {
-
-      // entries.forEach(element => console.log(element[0].employeename))
-    // }
-    // let newEntry = JSON.stringify(entries [0] [1])
-    // console.log(newEntry)
-
-   // variable for each object
-   // create an object that holds the data and a piece of html that represents what needed. 
-
-  
-    // console.log(this.employeeData[1])
-    // console.log(this.caller)
-    // console.log(this.completedData)
+    // information to create html format
     this.completedData = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -355,218 +237,30 @@ console.log(managerData)
             ${internObject}
         </div>
     </body>
-    </html>`
+    </html>`;
 
-   this.createHtml(this.completedData)
-    // this.generateData()
-    // .then(answer => {
-    //   console.log(answer)
-    // }
-      
-  // )
-    // this.completeDocument()
+    this.createHtml(this.completedData);
   }
 
-  // completeDocument() {
-  //   createHtml()
-  // }
-  // writeFunction() {
-  //   return generateData()
-  //   .then(answer => {
-  //     console.log(answer)
-  //   })
-  //   // .then(answer => {
-  //   //   console.log(answer)
-  //   // })
-  //   // console.log(this.EmployeeData)
-  // }
   createHtml(completedData) {
     return new Promise((resolve, reject) => {
-        // uses data from generate markdown page as filecontent
-    fs.writeFile('./dist/team.html', completedData, err => {
+      // uses data from generate markdown page as filecontent
+      fs.writeFile("./dist/team.html", completedData, (err) => {
         // if there's an error, reject the Promise and send the error to the Promise's `.catch()` method
         if (err) {
           reject(err);
           // return out of the function here to make sure the Promise doesn't accidentally execute the resolve() function as well
           return;
         }
-  
+
         // if everything went well, resolve the Promise and send the successful data to the `.then()` method
         resolve({
           ok: true,
-          message: 'File created!'
-    })})})
-}; 
-
+          message: "File created!",
+        });
+      });
+    });
+  }
 }
-// .then(answer => {
 
-// })
-// .then((answer) => {
-//   return console.log(this.employeInfo)
-// })
-// .then((answer) => {
-//   // this.employeeInfo.push(answer.employeeName)
-
-//   return this.caller.getEmployeeId(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-
-// }).then(answer => {
-
-//   // this.employeeInfo.push(answer.employeeId)
-
-//  return this.caller.getEmployeeEmail(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-
-// })
-// .then(answer => {
-//   // this.employeeInfo.push(answer)
-
-//   return this.caller.getOfficeNumber(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-
-// })
-// .then(answer => {
-//   // this.employeeInfo.push(answer3)
-//   return console.log(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-// })
-
-//   return inquirer.prompt([
-
-//     {
-//         type: 'input',
-//         name: 'employeeName',
-//         message: 'Enter Employee name.'
-//     },
-//     {
-//         type: 'input',
-//         name: 'employeeId',
-//         message: 'Enter employee Id.'
-//     },
-//     {
-//         type: 'input',
-//         name: 'employeeEmail',
-//         message: 'Enter employee email.'
-//     },
-//     {
-//       type: 'input',
-//       name: 'officeNumber',
-//       message: 'Enter employee officeNumber.'
-//   },
-
-// ])   .then(answer => {
-//   console.log(answer)
-
-//     this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-//     console.log('yay')
-//     console.log(this.employeeInfo)
-//     console.log('yay')
-
-//    //this.employeeData.push(employeeName, employeeId, employeeEmail)
-//    this.employeeData.push(this.employeeInfo)
-//    console.log(this.employeeData)
-// })
-// }
-
-// // prompt for employee name
-//   employeeNameQuestion() {
-//     console.log(this.employeeInfo)
-
-//     // uses employee to call getemployeeid function
-//     this.employeeInfo.getEmployeeName()
-//     // this.managerId = new Employee().getEmployeeId();
-//     .then(({ employeeId }) => {
-//         console.log(employeeId)
-//         // creates a manager
-
-//         // pushes name to manager array
-//         this.employeeData.push(employeeId)
-//         console.log(this.employeeData)
-
-//         // directs to get email function
-//         this.employeeIdQuestion()
-
-//     })
-
-//   }
-
-//   // get employees id
-//   employeeIdQuestion() {
-//     console.log(this.employeeInfo)
-
-//     // uses employee to call getemployeeid function
-//     this.employeeInfo.getEmployeeId()
-//     // this.managerId = new Employee().getEmployeeId();
-//     .then(({ employeeId }) => {
-//         console.log(employeeId)
-//         // creates a manager
-
-//         // pushes name to manager array
-//         this.employeeData.push(employeeId)
-//         console.log(this.employeeData)
-
-//         // directs to get email function
-//         this.employeeEmailFunction()
-
-//     })
-//   }
-
-//   employeeEmailFunction() {
-//     // gets email of employee
-//       this.employeeInfo.getEmployeeEmail()
-
-//       .then(({ employeeEmail }) => {
-
-//         this.employeeData.push(employeeEmail)
-//       console.log(this.employeeData)
-
-//       console.log(this.roleAssign)
-
-//       // call for individual items based on role.
-//       if(this.roleAssign === 'Manager') {
-
-//         this.managerQuestion();
-
-//       } else if (this.roleAssign === 'Engineer') {
-
-//       } else if (this.roleAssign === 'Intern') {
-
-//       }
-
-//       })
-//   }
-
-//   managerQuestion() {
-
-//     this.employeeInfo.getOfficeNumber()
-
-//     .then(({ officeNumber }) => {
-//       console.log(officeNumber)
-//       // creates a manager
-
-//       // pushes officenumber to manager array
-//       this.employeeData.push(officeNumber)
-//       console.log(this.employeeData)
-
-//   })
-//   }
-// }
-
-// function structureApp() {
-//     this.managerData = [];
-// const writeFunction = () => {
-//   createHtml('you')
-//   // .then(answer => {
-//   //   return console.log(answer)
-//   // })
-
-// }
-// }
-// sets manager Info to equal employeeName
 new Aplication().startAppManager();
-
-// .then(savedData => {
-//     console.log(savedData)
-
-// })
-
-// }
-
-// structureApp();
