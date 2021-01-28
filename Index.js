@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const fs = require("fs");
 const inquirer = require("inquirer");
+const { Console } = require("console");
 // const {createHtml, generateData} = require('./lib/Launch')
 
 class Aplication {
@@ -13,6 +14,7 @@ class Aplication {
     this.caller = "";
     this.roleAssign = "Manager";
     this.completedData = "fail"
+    this.managerFirst = 0
   }
 
   employeeRoleQuestion() {
@@ -90,8 +92,12 @@ class Aplication {
   startApp() {
     // calls manager class
 
+    if (this.managerFirst === 0) {
+      this.managerFirst++
+      console.log('Please enter Managers Information')
+    }
     //this.employeeInfo = new Manager(answer.employeeName, answer.employeeId, answer.employeeEmail, answer.officeNumber)
-
+    console.log(this.caller)
     // gets the employee name
     this.caller
       .getEmployeeName()
