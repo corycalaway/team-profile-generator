@@ -267,7 +267,7 @@ class Aplication {
    let managerData = this.employeeData.filter(element => {
       if(element.officeNumber) {
         index1++
-     managerObject = `<div class='objectsHtml'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>Office Number: ${element.officeNumber}</h3> </div>`
+     managerObject = `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Manager</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>Office Number: ${element.officeNumber}</h3> </div> </div>`
         return true
       }
     })[index1]
@@ -275,14 +275,14 @@ class Aplication {
 
     let engineerData = this.employeeData.filter(element => {
       if(element.employeeGitHub) {
-        engineerObject = engineerObject + `<div class='objectsHtml'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div>`
+        engineerObject = engineerObject + `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Engineer</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3>   <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>GitHub: ${element.employeeGitHub}</h3> </div></div>`
         return true
       }
     })[index2]
 
     let internData = this.employeeData.filter(element => {
       if(element.employeeSchool) {
-        internObject = internObject + `<div class='objectsHtml'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>School: ${element.employeeSchool}</h3> </div>`
+        internObject = internObject + `<div class='objectsHtml'> <div class='holder'> <h2 class='infoDataClass'>${element.employeeName}</h2> <h3>Intern</h3> </div><div class='holderBottom'> <h3 class='infoDataClass'>ID: ${element.employeeId}</h3> <h3 class='infoDataClass'>Email: ${element.employeeEmail}</h3> <h3 class='infoDataClass'>School: ${element.employeeSchool}</h3> </div> </div>`
         return true
       }
     })[index3]
